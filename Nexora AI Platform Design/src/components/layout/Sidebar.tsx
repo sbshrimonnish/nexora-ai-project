@@ -142,7 +142,7 @@ export default function Sidebar({ activePage, onNavigate, isDark, onToggleTheme,
                     onClick={() => handleItemClick(item.id)}
                     title={collapsed && !mobileOpen ? item.label : undefined}
                     style={{
-                      justify: collapsed && !mobileOpen ? "center" : "flex-start",
+                      justifyContent: collapsed && !mobileOpen ? "center" : "flex-start",
                       padding: collapsed && !mobileOpen ? "8px 6px" : "7px 10px",
                       opacity: item.secondary && !isActive ? 0.7 : 1,
                       marginBottom: 1,
