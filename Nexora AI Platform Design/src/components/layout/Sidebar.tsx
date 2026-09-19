@@ -91,7 +91,7 @@ export default function Sidebar({ activePage, onNavigate, isDark, onToggleTheme,
       )}
 
       <aside
-        className={mobileOpen ? "mobile-sidebar-drawer" : ""}
+        className={mobileOpen ? "sidebar-aside mobile-open" : "sidebar-aside"}
         style={{
           width: collapsed && !mobileOpen ? 56 : 220,
           background: "var(--sidebar-bg)",
