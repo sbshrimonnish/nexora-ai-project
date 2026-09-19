@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Filter, Download, RefreshCw, ChevronUp, ChevronDown, ChevronsUpDown, MoreHorizontal, ExternalLink } from "lucide-react";
+import { Search, Filter, RefreshCw, ChevronUp, ChevronDown, ChevronsUpDown, MoreHorizontal, ExternalLink } from "lucide-react";
 import { customers as demoCustomers } from "../data/demoData";
 import { useToast } from "../components/ui/Toast";
 import { apiService, Customer } from "../services/apiService";
@@ -123,7 +123,6 @@ export default function CustomerDirectory({ onSelectCustomer }: { onSelectCustom
           {sel.length > 0 && (
             <button className="btn btn-secondary btn-sm">{sel.length} selected ▾</button>
           )}
-          <button className="btn btn-secondary btn-sm" onClick={() => toast("CSV exported", "success")}><Download size={13} /> Export CSV</button>
           <button className="btn btn-secondary btn-sm btn-icon" onClick={() => toast("Refreshed", "info")}><RefreshCw size={13} /></button>
         </div>
       </div>

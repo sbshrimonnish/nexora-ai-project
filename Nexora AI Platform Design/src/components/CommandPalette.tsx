@@ -19,7 +19,6 @@ const commands = [
   { id: "copilot",             label: "Open AI Copilot",             icon: Bot,             cat: "Navigate" },
   { id: "settings",            label: "Settings",                    icon: Settings,        cat: "Navigate" },
   { id: "theme",               label: "Toggle Dark / Light Mode",    icon: Moon,            cat: "Actions"  },
-  { id: "export",              label: "Export Customer CSV",         icon: Download,        cat: "Actions"  },
   { id: "logout",              label: "Sign Out",                    icon: LogOut,          cat: "Actions"  },
 ];
 
