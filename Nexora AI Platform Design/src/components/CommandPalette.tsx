@@ -16,7 +16,6 @@ const commands = [
   { id: "xai-model",           label: "XAI / Model Evaluation",      icon: FlaskConical,    cat: "Navigate" },
   { id: "dataset-ingestion",   label: "Dataset Ingestion",           icon: Database,        cat: "Navigate" },
   { id: "model-retraining",    label: "Model Retraining",            icon: RefreshCw,       cat: "Navigate" },
-  { id: "academic-review",     label: "Academic Review",             icon: GraduationCap,   cat: "Navigate" },
   { id: "copilot",             label: "Open AI Copilot",             icon: Bot,             cat: "Navigate" },
   { id: "settings",            label: "Settings",                    icon: Settings,        cat: "Navigate" },
   { id: "theme",               label: "Toggle Dark / Light Mode",    icon: Moon,            cat: "Actions"  },

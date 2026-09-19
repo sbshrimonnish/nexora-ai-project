@@ -15,7 +15,6 @@ import ChurnIntelligence from "./pages/ChurnIntelligence";
 import XAIModel from "./pages/XAIModel";
 import DatasetIngestion from "./pages/DatasetIngestion";
 import ModelRetraining from "./pages/ModelRetraining";
-import AcademicReview from "./pages/AcademicReview";
 import CopilotPage, { CopilotFloating } from "./pages/Copilot";
 import Settings from "./pages/Settings";
 import IndividualProgress from "./pages/IndividualProgress";
@@ -60,7 +59,6 @@ export default function App() {
       "xai-model":           "XAI Model Evaluation",
       "dataset-ingestion":   "Dataset Ingestion",
       "model-retraining":    "Model Retraining",
-      "academic-review":     "Academic Review",
       "copilot":             "AI Copilot",
       "settings":            "Settings",
     };
@@ -111,7 +109,6 @@ export default function App() {
       case "xai-model":            return <XAIModel />;
       case "dataset-ingestion":    return <DatasetIngestion />;
       case "model-retraining":     return <ModelRetraining />;
-      case "academic-review":      return <AcademicReview />;
       case "copilot":              return <CopilotPage />;
       case "settings":             return <Settings isDark={isDark} onToggleTheme={toggleTheme} currency={currency} onCurrencyChange={setCurrency} />;
       default:                     return <Dashboard />;

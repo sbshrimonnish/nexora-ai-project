@@ -125,7 +125,6 @@ export const navItems = [
   { id: "xai-model", label: "XAI / Model Evaluation", icon: "FlaskConical" },
   { id: "dataset-ingestion", label: "Dataset Ingestion", icon: "Database" },
   { id: "model-retraining", label: "Model Retraining", icon: "RefreshCw" },
-  { id: "academic-review", label: "Academic Review", icon: "GraduationCap" },
   { id: "copilot", label: "AI Copilot", icon: "Bot" },
   { id: "settings", label: "Settings", icon: "Settings" },
 ];

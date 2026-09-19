@@ -58,7 +58,6 @@ const sections: NavSection[] = [
   {
     label: "Other",
     items: [
-      { id: "academic-review", label: "Academic Review", icon: "GraduationCap" },
       { id: "copilot",         label: "AI Copilot",      icon: "Bot"           },
       { id: "settings",        label: "Settings",        icon: "Settings"      },
     ],

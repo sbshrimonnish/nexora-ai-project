@@ -22,7 +22,6 @@ const pageLabels: Record<string, string> = {
   "xai-model":           "XAI / Model Evaluation",
   "dataset-ingestion":   "Dataset Ingestion",
   "model-retraining":    "Model Retraining",
-  "academic-review":     "Academic Review",
   "copilot":             "Nexora Copilot",
   "settings":            "Settings",
 };
