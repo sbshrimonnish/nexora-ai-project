@@ -1,4 +1,4 @@
-import { Search, Bell, ChevronRight, Command, Sun, Moon, IndianRupee, DollarSign, Euro } from "lucide-react";
+import { Search, Bell, ChevronRight, Command, Sun, Moon, IndianRupee, DollarSign, Euro, Menu } from "lucide-react";
 import { useState } from "react";
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   onToggleTheme: () => void;
   currency: string;
   onCurrencyChange: (c: string) => void;
+  onToggleMobileMenu?: () => void;
 }
 
 const pageLabels: Record<string, string> = {
@@ -29,7 +30,7 @@ const pageLabels: Record<string, string> = {
 
 const currencySymbols: Record<string, string> = { INR: "₹", USD: "$", EUR: "€", GBP: "£" };
 
-export default function Header({ activePage, onOpenCommand, isDark, onToggleTheme, currency, onCurrencyChange }: Props) {
+export default function Header({ activePage, onOpenCommand, isDark, onToggleTheme, currency, onCurrencyChange, onToggleMobileMenu }: Props) {
   const [showNotif, setShowNotif]     = useState(false);
   const [showCurrency, setShowCurrency] = useState(false);
   const [showUser, setShowUser]       = useState(false);
@@ -43,18 +44,30 @@ export default function Header({ activePage, onOpenCommand, isDark, onToggleThem
       borderBottom: "1px solid var(--border)",
       display: "flex",
       alignItems: "center",
-      padding: "0 18px",
+      padding: "0 14px",
       gap: 10,
       position: "sticky",
       top: 0,
       zIndex: 400,
       flexShrink: 0,
     }}>
+      {/* Mobile Hamburger Menu Toggle */}
+      {onToggleMobileMenu && (
+        <button
+          onClick={onToggleMobileMenu}
+          className="btn btn-ghost btn-icon btn-sm"
+          style={{ padding: 6 }}
+          title="Open Navigation Menu"
+        >
+          <Menu size={18} />
+        </button>
+      )}
+
       {/* Breadcrumb */}
       <div style={{ display: "flex", alignItems: "center", gap: 5, flex: 1, fontSize: 12.5, color: "var(--muted-foreground)", minWidth: 0 }}>
         <span>Nexora AI</span>
         <ChevronRight size={11} />
-        <span style={{ color: "var(--foreground)", fontWeight: 600 }}>{pageLabels[activePage] || activePage}</span>
+        <span style={{ color: "var(--foreground)", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{pageLabels[activePage] || activePage}</span>
       </div>
 
       {/* Search pill */}

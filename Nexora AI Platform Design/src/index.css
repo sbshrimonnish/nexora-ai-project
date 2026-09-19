@@ -600,11 +600,44 @@ select.input { cursor: pointer; }
   color: var(--muted-foreground);
 }
 
-/* ── Responsive ────────────────────────────────────────── */
+/* ── Responsive Mobile Enhancements ───────────────────── */
 @media (max-width: 1024px) {
   .page-wrap { padding: 18px 16px 32px; }
   .hide-tablet { display: none !important; }
 }
+
 @media (max-width: 768px) {
   .hide-mobile { display: none !important; }
+  .page-wrap { padding: 14px 12px 24px; }
+  .page-title { font-size: 19px; }
+  .page-subtitle { font-size: 12px; }
+
+  /* Responsive grid fallbacks */
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Table container horizontal scrolling */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile Sidebar Drawer overlay */
+  .mobile-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+  }
+
+  /* Search input adjustments */
+  .search-pill-mobile {
+    min-width: unset !important;
+    padding: 6px 8px !important;
+  }
 }
+

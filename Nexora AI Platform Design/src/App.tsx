@@ -28,6 +28,7 @@ export default function App() {
   const [currency,  setCurrency]  = useState("INR");
   const [cmdOpen,   setCmdOpen]   = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | undefined>(undefined);
 
   /* Ctrl/Cmd + K */
@@ -69,7 +70,10 @@ export default function App() {
     document.title = `Nexora AI — ${subtitle}`;
   }, [page]);
 
-  const navigate = (p: string) => setPage(p);
+  const navigate = (p: string) => {
+    setPage(p);
+    setMobileOpen(false);
+  };
   const toggleTheme = () => setIsDark(d => !d);
 
   if (!loggedIn) {
@@ -132,6 +136,8 @@ export default function App() {
           onToggleTheme={toggleTheme}
           collapsed={collapsed}
           onToggleCollapse={() => setCollapsed(c => !c)}
+          mobileOpen={mobileOpen}
+          onCloseMobile={() => setMobileOpen(false)}
         />
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", minWidth: 0 }}>
@@ -142,14 +148,16 @@ export default function App() {
             onToggleTheme={toggleTheme}
             currency={currency}
             onCurrencyChange={setCurrency}
+            onToggleMobileMenu={() => setMobileOpen(m => !m)}
           />
           <main style={{ flex: 1, overflowY: "auto", background: "var(--background)" }}>
             {renderPage()}
           </main>
         </div>
 
-        {/* Sidebar collapse toggle */}
+        {/* Sidebar collapse toggle (hidden on mobile) */}
         <button
+          className="hide-mobile"
           onClick={() => setCollapsed(c => !c)}
           style={{
             position: "fixed", bottom: 88, left: collapsed ? 66 : 230,
