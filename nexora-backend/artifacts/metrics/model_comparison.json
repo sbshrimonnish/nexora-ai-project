@@ -1,0 +1,38 @@
+{
+  "candidates": [
+    {
+      "model": "LinearRegression",
+      "mae": 1366.0761,
+      "rmse": 5253.8276,
+      "r2": 0.864733,
+      "mape": 71.0,
+      "train_time_s": 0.06,
+      "train_size": 40000,
+      "test_size": 10000
+    },
+    {
+      "model": "RandomForestRegressor",
+      "mae": 842.2879,
+      "rmse": 4885.518,
+      "r2": 0.883034,
+      "mape": 26.46,
+      "train_time_s": 24.07,
+      "train_size": 40000,
+      "test_size": 10000
+    },
+    {
+      "model": "GradientBoostingRegressor",
+      "mae": 882.0675,
+      "rmse": 5289.0095,
+      "r2": 0.862915,
+      "mape": 28.06,
+      "train_time_s": 108.03,
+      "train_size": 40000,
+      "test_size": 10000
+    }
+  ],
+  "selected_model": "RandomForestRegressor",
+  "selection_reason": "Highest R\u00b2 (0.8830) among all candidates",
+  "train_split": "Sequential 80/20 (temporal proxy)",
+  "test_period_note": "Last 20% of account IDs used as holdout \u2014 simulates future prediction"
+}

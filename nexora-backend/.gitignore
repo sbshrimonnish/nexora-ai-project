@@ -1,0 +1,17 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.pytest_cache/
+*.log
+
+# Models & Generated Artifacts (keep structure, ignore binary outputs if huge)
+artifacts/models/*.pkl
+artifacts/models/*.json

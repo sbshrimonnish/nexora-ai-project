@@ -1,0 +1,355 @@
+{
+  "feature_count": 35,
+  "features": [
+    {
+      "feature_name": "company_size_enc",
+      "display_name": "Company Size",
+      "source_column": "company_size",
+      "data_type": "categorical (label-encoded)",
+      "transformation": "LabelEncoder",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Categorical firmographic signal"
+    },
+    {
+      "feature_name": "industry_enc",
+      "display_name": "Industry",
+      "source_column": "industry",
+      "data_type": "categorical (label-encoded)",
+      "transformation": "LabelEncoder",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Categorical firmographic signal"
+    },
+    {
+      "feature_name": "contract_type_enc",
+      "display_name": "Contract Type",
+      "source_column": "contract_type",
+      "data_type": "categorical (label-encoded)",
+      "transformation": "LabelEncoder",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Categorical firmographic signal"
+    },
+    {
+      "feature_name": "regime_state_enc",
+      "display_name": "Regime / Account State",
+      "source_column": "regime_state",
+      "data_type": "categorical (label-encoded)",
+      "transformation": "LabelEncoder",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Categorical firmographic signal"
+    },
+    {
+      "feature_name": "discount_pct",
+      "display_name": "Discount %",
+      "source_column": "discount_pct",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "historical_tenure_months",
+      "display_name": "Account Tenure (months)",
+      "source_column": "historical_tenure_months",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_mrr",
+      "display_name": "Current MRR",
+      "source_column": "current_mrr",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_active_users",
+      "display_name": "Active Users",
+      "source_column": "current_active_users",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_usage_growth",
+      "display_name": "Usage Growth",
+      "source_column": "current_usage_growth",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_feature_adoption_rate",
+      "display_name": "Feature Adoption Rate",
+      "source_column": "current_feature_adoption_rate",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_error_rate",
+      "display_name": "Error Rate",
+      "source_column": "current_error_rate",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_tickets_count",
+      "display_name": "Support Ticket Count",
+      "source_column": "current_tickets_count",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_ticket_growth",
+      "display_name": "Support Ticket Growth",
+      "source_column": "current_ticket_growth",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "current_payment_delay_flag",
+      "display_name": "Payment Delay (current)",
+      "source_column": "current_payment_delay_flag",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_mrr_mean",
+      "display_name": "Hist. Mean MRR",
+      "source_column": "hist_mrr_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_mrr_std",
+      "display_name": "MRR Volatility (std)",
+      "source_column": "hist_mrr_std",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_mrr_min",
+      "display_name": "Hist. Min MRR",
+      "source_column": "hist_mrr_min",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_mrr_max",
+      "display_name": "Hist. Max MRR",
+      "source_column": "hist_mrr_max",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_active_users_mean",
+      "display_name": "Hist. Avg Active Users",
+      "source_column": "hist_active_users_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_usage_growth_mean",
+      "display_name": "Hist. Avg Usage Growth",
+      "source_column": "hist_usage_growth_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_adoption_mean",
+      "display_name": "Hist. Avg Adoption",
+      "source_column": "hist_adoption_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_error_rate_mean",
+      "display_name": "Hist. Avg Error Rate",
+      "source_column": "hist_error_rate_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_tickets_mean",
+      "display_name": "Hist. Avg Ticket Count",
+      "source_column": "hist_tickets_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "hist_ticket_growth_mean",
+      "display_name": "Hist. Avg Ticket Growth",
+      "source_column": "hist_ticket_growth_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "payment_delay_rate",
+      "display_name": "Payment Delay Rate",
+      "source_column": "payment_delay_rate",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "recent_3m_mrr_mean",
+      "display_name": "Recent 3M Avg MRR",
+      "source_column": "recent_3m_mrr_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "recent_3m_active_users_mean",
+      "display_name": "Recent 3M Avg Active Users",
+      "source_column": "recent_3m_active_users_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "recent_3m_adoption_mean",
+      "display_name": "Recent 3M Avg Adoption",
+      "source_column": "recent_3m_adoption_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "recent_3m_tickets_mean",
+      "display_name": "Recent 3M Avg Tickets",
+      "source_column": "recent_3m_tickets_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "recent_3m_error_rate_mean",
+      "display_name": "Recent 3M Avg Error Rate",
+      "source_column": "recent_3m_error_rate_mean",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "mrr_growth_first3_to_last3",
+      "display_name": "MRR Growth Trend",
+      "source_column": "mrr_growth_first3_to_last3",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "active_users_trend_first3_to_last3",
+      "display_name": "Active Users Trend",
+      "source_column": "active_users_trend_first3_to_last3",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "adoption_trend_first3_to_last3",
+      "display_name": "Adoption Trend",
+      "source_column": "adoption_trend_first3_to_last3",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "tickets_trend_first3_to_last3",
+      "display_name": "Support Tickets Trend",
+      "source_column": "tickets_trend_first3_to_last3",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    },
+    {
+      "feature_name": "error_rate_trend_first3_to_last3",
+      "display_name": "Error Rate Trend",
+      "source_column": "error_rate_trend_first3_to_last3",
+      "data_type": "numerical",
+      "transformation": "none (pre-engineered)",
+      "available_at_cutoff": true,
+      "leakage_risk": false,
+      "reason_for_use": "Pre-engineered from historical SaaS behavioral data"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "AI-driven platform predicts and analyzes customer lifetime value for B2B and SaaS firms, enabling data-driven growth and retention strategies.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

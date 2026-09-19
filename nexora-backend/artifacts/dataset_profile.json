@@ -1,0 +1,37 @@
+{
+  "dataset_name": "nexora_clv_50k_model_ready.csv",
+  "row_count": 50000,
+  "column_count": 12,
+  "file_size_mb": 26.8,
+  "columns": [
+    "customer_id",
+    "account_name",
+    "historical_mrr",
+    "historical_tenure_months",
+    "nps_score",
+    "support_tickets_30d",
+    "active_users_count",
+    "contract_length_months",
+    "industry",
+    "tier",
+    "region",
+    "clv_target_12m_revenue_based"
+  ],
+  "numerical_features": [
+    "historical_mrr",
+    "historical_tenure_months",
+    "nps_score",
+    "support_tickets_30d",
+    "active_users_count",
+    "contract_length_months"
+  ],
+  "categorical_features": [
+    "industry",
+    "tier",
+    "region"
+  ],
+  "target_column": "clv_target_12m_revenue_based",
+  "data_quality_score_pct": 100.0,
+  "missing_values_count": 0,
+  "duplicate_rows_count": 0
+}
