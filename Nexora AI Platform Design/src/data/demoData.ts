@@ -50,12 +50,12 @@ export const forecastData = [
 ];
 
 export const segmentData = [
-  { name: "High Value", customers: 312, totalClv: 28400000000, avgClv: 9100000, revenue: 48.2, tenure: 52, color: "#6366f1" },
-  { name: "Growth Opportunity", customers: 489, totalClv: 14200000000, avgClv: 2900000, revenue: 24.1, tenure: 24, color: "#8b5cf6" },
-  { name: "Stable Value", customers: 621, totalClv: 9800000000, avgClv: 1580000, revenue: 16.6, tenure: 38, color: "#3b82f6" },
-  { name: "Developing", customers: 834, totalClv: 4200000000, avgClv: 500000, revenue: 7.1, tenure: 12, color: "#10b981" },
-  { name: "Declining Value", customers: 243, totalClv: 2100000000, avgClv: 860000, revenue: 3.5, tenure: 31, color: "#f59e0b" },
-  { name: "Low Value", customers: 501, totalClv: 300000000, avgClv: 60000, revenue: 0.5, tenure: 8, color: "#6b7280" },
+  { name: "High Value", customers: 12500, totalClv: 98400000000, avgClv: 7872000, revenue: 48.2, tenure: 52, color: "#6366f1" },
+  { name: "Growth Opportunity", customers: 15200, totalClv: 54200000000, avgClv: 3565000, revenue: 26.5, tenure: 24, color: "#8b5cf6" },
+  { name: "Stable Value", customers: 11800, totalClv: 24800000000, avgClv: 2101000, revenue: 14.2, tenure: 38, color: "#3b82f6" },
+  { name: "Developing", customers: 5400, totalClv: 6200000000, avgClv: 1148000, revenue: 6.1, tenure: 12, color: "#10b981" },
+  { name: "Declining Value", customers: 3600, totalClv: 3500000000, avgClv: 972000, revenue: 3.5, tenure: 31, color: "#f59e0b" },
+  { name: "Low Value", customers: 1500, totalClv: 1500000000, avgClv: 1000000, revenue: 1.5, tenure: 8, color: "#6b7280" },
 ];
 
 export const shapData = [

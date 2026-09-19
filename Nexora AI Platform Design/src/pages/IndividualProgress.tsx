@@ -134,37 +134,65 @@ export default function IndividualProgress({
 
   const buildFallbackData = (rawId: string) => {
     const cleanNum = parseInt(rawId.replace(/[^0-9]/g, "")) || 1;
+    const names = ["Acme Tech", "Stellar Dynamics", "NovaSpark Labs", "TechNova Systems", "Orbit Logistics", "Prism Analytics", "Cascade Health", "BlueWave Retail", "Vertex Finance", "CloudPath SaaS"];
+    const industries = ["Software / SaaS", "Finance", "Healthcare", "E-commerce", "Logistics"];
+    const tiers = ["Enterprise", "Mid-Market", "SMB"];
+    
+    const company = names[(cleanNum * 7) % names.length];
+    const industry = industries[cleanNum % industries.length];
+    const tier = tiers[cleanNum % tiers.length];
+
+    const mrr = 20000 + ((cleanNum * 41) % 380) * 1000;
+    const predicted_clv = Math.round(mrr * (22 + ((cleanNum * 17) % 38)));
+    const health_score = 40 + ((cleanNum * 23) % 58);
+    const churn_probability = Math.max(0.04, Math.min(0.85, Number(((100 - health_score - ((cleanNum * 5) % 15)) / 100).toFixed(2))));
+    const feature_adoption = Number((0.35 + ((cleanNum * 13) % 60) / 100).toFixed(2));
+    const active_users = 15 + ((cleanNum * 19) % 240);
+    const tenure_months = 6 + ((cleanNum * 11) % 65);
+    const mrr_growth = Number((-0.15 + ((cleanNum * 13) % 48) / 100).toFixed(3));
+
+    let clv_segment = "Mid Value";
+    if (predicted_clv > 7000000) clv_segment = "High Value";
+    else if (predicted_clv > 3500000) clv_segment = "Growth Opportunity";
+    else if (predicted_clv > 1800000) clv_segment = "Stable Value";
+    else if (predicted_clv > 800000) clv_segment = "Developing";
+    else if (mrr_growth < 0 && churn_probability > 0.35) clv_segment = "Declining Value";
+    else clv_segment = "Low Value";
+
+    const clv_trajectory = mrr_growth > 0.05 ? "Increasing" : mrr_growth < -0.05 ? "Declining" : "Stable";
+    const churn_risk_level = churn_probability > 0.45 ? "High Risk" : churn_probability > 0.2 ? "Medium Risk" : "Low Risk";
+
     return {
       account_id: cleanNum,
-      account_name: `Account-${cleanNum} (Acme Tech)`,
-      industry: "Software / SaaS",
-      tier: "Enterprise",
-      contract_type: "Annual Pre-paid",
-      regime_state: "Expansion",
-      clv_segment: "High Value",
-      clv_trajectory: "Increasing",
-      churn_risk_level: "Low Risk",
-      tenure_months: 38,
+      account_name: `Account-${cleanNum} (${company})`,
+      industry,
+      tier,
+      contract_type: cleanNum % 2 === 0 ? "Annual Pre-paid" : "Monthly Recurring",
+      regime_state: mrr_growth > 0 ? "Expansion" : "Contraction",
+      clv_segment,
+      clv_trajectory,
+      churn_risk_level,
+      tenure_months,
       current: {
-        mrr: 245000,
-        predicted_clv: 7850000,
-        health_score: 87,
-        churn_probability: 0.12,
-        feature_adoption: 0.78,
-        active_users: 145,
-        mrr_growth: 0.184,
-        usage_growth: 0.22,
-        ticket_count: 2,
+        mrr,
+        predicted_clv,
+        health_score,
+        churn_probability,
+        feature_adoption,
+        active_users,
+        mrr_growth,
+        usage_growth: 0.15,
+        ticket_count: (cleanNum % 5) + 1,
         payment_delay: 0.02,
         discount_pct: 0.05,
       },
       snapshot: {
-        current_mrr: 245000,
-        predicted_clv: 7850000,
-        health_score: 87,
-        churn_probability: 0.12,
-        feature_adoption: 0.78,
-        active_users: 145,
+        current_mrr: mrr,
+        predicted_clv,
+        health_score,
+        churn_probability,
+        feature_adoption,
+        active_users,
       },
       benchmarks: {
         avg_mrr: 125000,
@@ -174,117 +202,117 @@ export default function IndividualProgress({
         avg_adoption: 0.55,
       },
       mrr_series: [
-        { period: "M-6", mrr: 190000 },
-        { period: "M-5", mrr: 202000 },
-        { period: "M-4", mrr: 215000 },
-        { period: "M-3", mrr: 228000 },
-        { period: "M-2", mrr: 236000 },
-        { period: "M-1", mrr: 245000 },
+        { period: "M-6", mrr: Math.round(mrr * 0.8) },
+        { period: "M-5", mrr: Math.round(mrr * 0.84) },
+        { period: "M-4", mrr: Math.round(mrr * 0.89) },
+        { period: "M-3", mrr: Math.round(mrr * 0.93) },
+        { period: "M-2", mrr: Math.round(mrr * 0.97) },
+        { period: "M-1", mrr },
       ],
       clv_series: [
-        { period: "M-6", clv: 6200000 },
-        { period: "M-5", clv: 6550000 },
-        { period: "M-4", clv: 6900000 },
-        { period: "M-3", clv: 7250000 },
-        { period: "M-2", clv: 7500000 },
-        { period: "M-1", clv: 7850000 },
+        { period: "M-6", clv: Math.round(predicted_clv * 0.78) },
+        { period: "M-5", clv: Math.round(predicted_clv * 0.83) },
+        { period: "M-4", clv: Math.round(predicted_clv * 0.88) },
+        { period: "M-3", clv: Math.round(predicted_clv * 0.92) },
+        { period: "M-2", clv: Math.round(predicted_clv * 0.96) },
+        { period: "M-1", clv: predicted_clv },
       ],
       health_series: [
-        { period: "M-6", health: 76 },
-        { period: "M-5", health: 79 },
-        { period: "M-4", health: 82 },
-        { period: "M-3", health: 84 },
-        { period: "M-2", health: 86 },
-        { period: "M-1", health: 87 },
+        { period: "M-6", health: Math.max(30, health_score - 10) },
+        { period: "M-5", health: Math.max(30, health_score - 7) },
+        { period: "M-4", health: Math.max(30, health_score - 5) },
+        { period: "M-3", health: Math.max(30, health_score - 3) },
+        { period: "M-2", health: Math.max(30, health_score - 1) },
+        { period: "M-1", health: health_score },
       ],
       adoption_series: [
-        { period: "M-6", adoption: 58 },
-        { period: "M-5", adoption: 62 },
-        { period: "M-4", adoption: 68 },
-        { period: "M-3", adoption: 71 },
-        { period: "M-2", adoption: 75 },
-        { period: "M-1", adoption: 78 },
+        { period: "M-6", adoption: Math.max(20, Math.round((feature_adoption - 0.2) * 100)) },
+        { period: "M-5", adoption: Math.max(20, Math.round((feature_adoption - 0.15) * 100)) },
+        { period: "M-4", adoption: Math.max(20, Math.round((feature_adoption - 0.1) * 100)) },
+        { period: "M-3", adoption: Math.max(20, Math.round((feature_adoption - 0.06) * 100)) },
+        { period: "M-2", adoption: Math.max(20, Math.round((feature_adoption - 0.02) * 100)) },
+        { period: "M-1", adoption: Math.round(feature_adoption * 100) },
       ],
       churn_series: [
-        { period: "M-6", churn_pct: 24 },
-        { period: "M-5", churn_pct: 20 },
-        { period: "M-4", churn_pct: 18 },
-        { period: "M-3", churn_pct: 15 },
-        { period: "M-2", churn_pct: 13 },
-        { period: "M-1", churn_pct: 12 },
+        { period: "M-6", churn_pct: Math.min(90, Math.round((churn_probability + 0.15) * 100)) },
+        { period: "M-5", churn_pct: Math.min(90, Math.round((churn_probability + 0.1) * 100)) },
+        { period: "M-4", churn_pct: Math.min(90, Math.round((churn_probability + 0.07) * 100)) },
+        { period: "M-3", churn_pct: Math.min(90, Math.round((churn_probability + 0.04) * 100)) },
+        { period: "M-2", churn_pct: Math.min(90, Math.round((churn_probability + 0.02) * 100)) },
+        { period: "M-1", churn_pct: Math.round(churn_probability * 100) },
       ],
       signals: [
-        { label: "MRR Growth", value: "+18.4%", detail: "Consistent expansion trend over last 6 months", status: "positive" },
-        { label: "Product Adoption", value: "78%", detail: "Above 60% benchmark for Enterprise accounts", status: "positive" },
-        { label: "Support Volume", value: "2 tkts/mo", detail: "Low issue frequency, healthy operational state", status: "positive" },
+        { label: "MRR Growth", value: `${mrr_growth >= 0 ? "+" : ""}${(mrr_growth * 100).toFixed(1)}%`, detail: "Historical ARR trajectory trend", status: mrr_growth >= 0 ? "positive" : "negative" },
+        { label: "Product Adoption", value: `${Math.round(feature_adoption * 100)}%`, detail: "Account feature utilization rate", status: feature_adoption >= 0.5 ? "positive" : "neutral" },
+        { label: "Support Volume", value: `${(cleanNum % 5) + 1} tkts/mo`, detail: "Operational ticket frequency", status: "positive" },
       ],
       milestones: [
         { label: "Onboarding Complete", icon: "check-circle", achieved: true },
         { label: "First Tier Upgrade", icon: "trending-up", achieved: true },
-        { label: "Annual Contract Renewal", icon: "shield", achieved: true },
+        { label: "Contract Renewal Status", icon: "shield", achieved: churn_probability < 0.3 },
       ],
       shap: {
         available: true,
         method: "TreeExplainer Local Attribution",
         base_value: 3500000,
-        predicted_clv: 7850000,
+        predicted_clv,
         waterfall: [
-          { feature: "Monthly MRR", feature_value: 245000, shap_value: 1850000, direction: "positive" },
-          { feature: "Product Adoption Rate", feature_value: 0.78, shap_value: 1200000, direction: "positive" },
-          { feature: "Historical Tenure", feature_value: 38, shap_value: 850000, direction: "positive" },
-          { feature: "Usage Growth", feature_value: 0.22, shap_value: 650000, direction: "positive" },
-          { feature: "Payment Delay Rate", feature_value: 0.02, shap_value: -200000, direction: "negative" },
+          { feature: "Monthly MRR", feature_value: mrr, shap_value: Math.round(mrr * 7.5), direction: "positive" },
+          { feature: "Product Adoption Rate", feature_value: feature_adoption, shap_value: Math.round(predicted_clv * 0.15), direction: "positive" },
+          { feature: "Historical Tenure", feature_value: tenure_months, shap_value: Math.round(predicted_clv * 0.1), direction: "positive" },
+          { feature: "Usage Growth", feature_value: 0.15, shap_value: Math.round(predicted_clv * 0.08), direction: "positive" },
+          { feature: "Payment Delay Rate", feature_value: 0.02, shap_value: -150000, direction: "negative" },
         ],
         note: "Local SHAP explains individual feature impact relative to portfolio mean CLV."
       },
       recommendations: [
         {
-          priority: "Medium",
-          color: "#3b82f6",
-          action: "Upsell / Expansion Opportunity",
-          reason: "MRR growing at 18.4% — high product adoption signal",
+          priority: churn_probability > 0.4 ? "Critical" : "Medium",
+          color: churn_probability > 0.4 ? "#ef4444" : "#3b82f6",
+          action: churn_probability > 0.4 ? "Retention & Risk Mitigation" : "Upsell / Expansion Opportunity",
+          reason: churn_probability > 0.4 ? `High churn probability of ${(churn_probability * 100).toFixed(0)}% detected` : `MRR growing at ${(mrr_growth * 100).toFixed(1)}% — high engagement`,
           steps: [
-            "Schedule Executive QBR to review additional license tiers",
-            "Present Advanced Analytics module add-on",
-            "Offer multi-year lock discount"
+            "Schedule Executive QBR to review account health",
+            "Evaluate unused module adoption",
+            "Review support escalation logs"
           ],
-          impact: "Estimated +₹15L ARR expansion"
+          impact: `Target impact: ₹${(predicted_clv / 100000).toFixed(1)}L account value`
         }
       ],
       risk_profile: {
-        composite_score: 14,
-        risk_label: "Low Churn Risk",
-        risk_color: "#10b981",
-        percentile: 12,
+        composite_score: Math.round(churn_probability * 100),
+        risk_label: churn_risk_level,
+        risk_color: churn_probability > 0.4 ? "#ef4444" : churn_probability > 0.2 ? "#f59e0b" : "#10b981",
+        percentile: Math.round(churn_probability * 90),
         dimensions: [
-          { label: "Usage Frequency", weight: "25%", score: 10, color: "#10b981" },
+          { label: "Usage Frequency", weight: "25%", score: Math.round(churn_probability * 90), color: churn_probability > 0.4 ? "#ef4444" : "#10b981" },
           { label: "Payment Delays", weight: "20%", score: 15, color: "#10b981" },
-          { label: "Support Ticket Growth", weight: "20%", score: 12, color: "#10b981" },
-          { label: "Feature Adoption", weight: "20%", score: 18, color: "#10b981" },
+          { label: "Support Ticket Growth", weight: "20%", score: 20, color: "#10b981" },
+          { label: "Feature Adoption", weight: "20%", score: Math.round((1 - feature_adoption) * 100), color: feature_adoption < 0.5 ? "#f59e0b" : "#10b981" },
           { label: "Discount Level", weight: "15%", score: 10, color: "#10b981" },
         ]
       },
       payment_profile: {
-        rating: "Excellent",
-        rating_color: "#10b981",
+        rating: churn_probability > 0.4 ? "Needs Review" : "Excellent",
+        rating_color: churn_probability > 0.4 ? "#f59e0b" : "#10b981",
         delay_rate_pct: 2,
-        contract_type: "Annual Pre-paid",
+        contract_type: cleanNum % 2 === 0 ? "Annual Pre-paid" : "Monthly Recurring",
         discount_pct: 5,
       },
       clv_breakdown: {
-        predicted_clv: 7850000,
+        predicted_clv,
         components: [
-          { label: "Baseline Contract Value", value: 2940000, color: "#5b5ff1" },
-          { label: "Expected Expansion Revenue", value: 3400000, color: "#8b5cf6" },
-          { label: "Tenure Loyalty Multiplier", value: 1810000, color: "#10b981" },
-          { label: "Payment Delay Discount", value: -300000, color: "#ef4444" },
+          { label: "Baseline Contract Value", value: Math.round(mrr * 12), color: "#5b5ff1" },
+          { label: "Expected Expansion Revenue", value: Math.round(predicted_clv * 0.45), color: "#8b5cf6" },
+          { label: "Tenure Loyalty Multiplier", value: Math.round(predicted_clv * 0.2), color: "#10b981" },
+          { label: "Payment Delay Discount", value: -150000, color: "#ef4444" },
         ]
       },
       timeline: [
         { month: -24, event: "Account Onboarded", detail: "Initial subscription started", type: "success" },
-        { month: -12, event: "Contract Expansion", detail: "Added Enterprise analytics module", type: "success" },
-        { month: -3, event: "QBR Review Completed", detail: "High CSAT rating recorded", type: "info" },
-        { month: 0, event: "Current Snapshot", detail: "Account operating normally", type: "success" },
+        { month: -12, event: "Contract Milestone", detail: "Annual plan active", type: "success" },
+        { month: -3, event: "QBR Review Completed", detail: "Account review logged", type: "info" },
+        { month: 0, event: "Current Snapshot", detail: `Account status: ${churn_risk_level}`, type: churn_probability > 0.4 ? "danger" : "success" },
       ]
     };
   };

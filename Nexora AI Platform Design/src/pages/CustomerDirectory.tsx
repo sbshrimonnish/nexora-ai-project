@@ -36,6 +36,55 @@ const QUICK_FILTERS = [
   { id: "At Risk",            label: "At Risk"              },
 ];
 
+const COMPANY_NAMES = [
+  "Acme Corp", "Stellar Dynamics", "NovaSpark Labs", "TechNova Systems", "Orbit Logistics",
+  "Prism Analytics", "Cascade Health", "BlueWave Retail", "Vertex Finance", "CloudPath SaaS",
+  "Meridian Pharma", "SwiftLog Enterprise", "Aura Intelligence", "Quantum Data", "Apex SaaS",
+  "Horizon Cloud", "Pulse Systems", "Vanguard Tech", "Echo Networks", "Titan Solutions"
+];
+const INDUSTRIES = ["Software", "Finance", "Healthcare", "E-commerce", "Logistics"];
+const SIZES = ["Enterprise", "Mid-Market", "SMB"];
+
+function generate50kCustomer(i: number) {
+  const compName = COMPANY_NAMES[(i * 7) % COMPANY_NAMES.length];
+  const company = `Account-${i} (${compName})`;
+  const industry = INDUSTRIES[i % INDUSTRIES.length];
+  const size = SIZES[i % SIZES.length];
+  const mrr = 15000 + ((i * 41) % 380) * 1000;
+  const clv = Math.round(mrr * (22 + ((i * 17) % 38)));
+  const clvGrowth = Number((-15 + ((i * 13) % 48)).toFixed(1));
+  const health = 40 + ((i * 23) % 58);
+  const churnRisk = Math.max(3, Math.min(85, Math.round(100 - health - ((i * 5) % 15))));
+  const tenure = 6 + ((i * 19) % 65);
+
+  let segment = "Mid Value";
+  if (clv > 7000000) segment = "High Value";
+  else if (clv > 3500000) segment = "Growth Opportunity";
+  else if (clv > 1800000) segment = "Stable Value";
+  else if (clv > 800000) segment = "Developing";
+  else if (clvGrowth < 0 && churnRisk > 35) segment = "Declining Value";
+  else segment = "Low Value";
+
+  const status = churnRisk > 40 ? "At Risk" : "Active";
+  const lastActivity = `${(i % 12) + 1} support tkt`;
+
+  return {
+    id: String(i),
+    company,
+    industry,
+    size,
+    mrr,
+    clv,
+    clvGrowth,
+    health,
+    churnRisk,
+    tenure,
+    segment,
+    status,
+    lastActivity,
+  };
+}
+
 export default function CustomerDirectory({ onSelectCustomer }: { onSelectCustomer?: (customer?: any) => void }) {
   const [search,  setSearch]  = useState("");
   const [qf,      setQf]      = useState("");
@@ -89,13 +138,32 @@ export default function CustomerDirectory({ onSelectCustomer }: { onSelectCustom
         setTotalPages(1);
       }
     } catch (err) {
-      // Fallback to demo dataset
-      const filtered = demoCustomers.filter(c =>
-        (!search || c.company.toLowerCase().includes(search.toLowerCase()) || c.id.toLowerCase().includes(search.toLowerCase()))
-      );
-      setItems(filtered.slice((page - 1) * PER, page * PER));
-      setTotal(filtered.length);
-      setTotalPages(Math.ceil(filtered.length / PER));
+      // Fallback generator for full 50,000 customer dataset
+      const totalCount = 50000;
+      const sLower = search.toLowerCase().trim();
+      const numMatch = parseInt(sLower.replace(/[^0-9]/g, ""));
+
+      let pageItems: any[] = [];
+      let calculatedTotal = totalCount;
+
+      if (!isNaN(numMatch) && numMatch >= 1 && numMatch <= 50000) {
+        pageItems = [generate50kCustomer(numMatch)];
+        calculatedTotal = 1;
+      } else {
+        const startIdx = (page - 1) * PER + 1;
+        const endIdx = Math.min(totalCount, page * PER);
+        for (let idx = startIdx; idx <= endIdx; idx++) {
+          const item = generate50kCustomer(idx);
+          if (qf && item.segment.toLowerCase() !== qf.toLowerCase() && !(qf === "At Risk" && item.status === "At Risk")) {
+            continue;
+          }
+          pageItems.push(item);
+        }
+      }
+
+      setItems(pageItems);
+      setTotal(calculatedTotal);
+      setTotalPages(Math.ceil(calculatedTotal / PER));
     } finally {
       setLoading(false);
     }
