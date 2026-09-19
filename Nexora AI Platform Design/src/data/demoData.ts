@@ -118,7 +118,6 @@ export const navItems = [
   { id: "dashboard", label: "Executive Dashboard", icon: "LayoutDashboard", primary: true },
   { id: "clv-intelligence", label: "Customer Lifetime Value (CLV)", icon: "BrainCircuit", primary: true },
   { id: "customer-directory", label: "Customer Directory", icon: "Users" },
-  { id: "customer-360", label: "Customer 360°", icon: "UserCircle" },
   { id: "clv-segmentation", label: "CLV Segmentation", icon: "PieChart" },
   { id: "revenue-forecast", label: "Revenue Forecast", icon: "TrendingUp" },
   { id: "cohort-analytics", label: "Cohort Analytics", icon: "BarChart2" },

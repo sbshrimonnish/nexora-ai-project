@@ -94,7 +94,7 @@ export default function AcademicReview() {
               },
               {
                 id: "9", title: "Explainable AI (XAI)",
-                content: "SHAP TreeExplainer was applied to generate both global and local explanations. Global SHAP identified monthly_spend (38%), usage_frequency (31%), and product_adoption (28%) as the top CLV drivers. Local SHAP provides per-customer explanations displayed in the Customer 360° interface, enabling customer success teams to understand and act on individual predictions."
+                content: "SHAP TreeExplainer was applied to generate both global and local explanations. Global SHAP identified monthly_spend (38%), usage_frequency (31%), and product_adoption (28%) as the top CLV drivers. Local SHAP provides per-customer explanations displayed in the Individual Progress interface, enabling customer success teams to understand and act on individual predictions."
               },
               {
                 id: "10", title: "Results & Analysis",

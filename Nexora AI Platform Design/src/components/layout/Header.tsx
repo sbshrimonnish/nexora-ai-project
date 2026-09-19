@@ -15,7 +15,6 @@ const pageLabels: Record<string, string> = {
   "dashboard":           "Executive Dashboard",
   "clv-intelligence":    "Customer Lifetime Value (CLV)",
   "customer-directory":  "Customer Directory",
-  "customer-360":        "Customer 360°",
   "clv-segmentation":    "CLV Segmentation",
   "revenue-forecast":    "Revenue Forecast",
   "cohort-analytics":    "Cohort Analytics",

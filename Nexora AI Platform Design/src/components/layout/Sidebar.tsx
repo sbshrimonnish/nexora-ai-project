@@ -35,7 +35,6 @@ const sections: NavSection[] = [
     label: "Customers",
     items: [
       { id: "customer-directory",   label: "Customer Directory",    icon: "Users"       },
-      { id: "customer-360",         label: "Customer 360°",         icon: "UserCircle"  },
       { id: "individual-progress",  label: "Individual Progress",   icon: "Activity"    },
       { id: "clv-segmentation",     label: "CLV Segmentation",      icon: "PieChart"    },
     ],

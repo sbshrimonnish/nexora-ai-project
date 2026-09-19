@@ -8,7 +8,6 @@ import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import CLVIntelligence from "./pages/CLVIntelligence";
 import CustomerDirectory from "./pages/CustomerDirectory";
-import Customer360 from "./pages/Customer360";
 import CLVSegmentation from "./pages/CLVSegmentation";
 import RevenueForecast from "./pages/RevenueForecast";
 import CohortAnalytics from "./pages/CohortAnalytics";
@@ -53,7 +52,6 @@ export default function App() {
       "dashboard":           "Executive Dashboard",
       "clv-intelligence":    "Customer Lifetime Value (CLV)",
       "customer-directory":  "Customer Directory",
-      "customer-360":        "Customer 360°",
       "individual-progress": "Individual Progress",
       "clv-segmentation":    "CLV Segmentation",
       "revenue-forecast":    "Revenue Forecast",
@@ -98,12 +96,6 @@ export default function App() {
       case "customer-directory":   return (
         <CustomerDirectory
           onSelectCustomer={handleSelectCustomer}
-        />
-      );
-      case "customer-360":         return (
-        <Customer360
-          customerId={selectedCustomerId}
-          onBack={() => navigate("customer-directory")}
         />
       );
       case "individual-progress":  return (

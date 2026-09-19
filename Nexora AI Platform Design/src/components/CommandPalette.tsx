@@ -9,7 +9,6 @@ const commands = [
   { id: "dashboard",           label: "Executive Dashboard",         icon: LayoutDashboard, cat: "Navigate" },
   { id: "clv-intelligence",    label: "Customer Lifetime Value (CLV)", icon: BrainCircuit,    cat: "Navigate" },
   { id: "customer-directory",  label: "Customer Directory",          icon: Users,           cat: "Navigate" },
-  { id: "customer-360",        label: "Customer 360° — Acme Tech",   icon: UserCircle,      cat: "Navigate" },
   { id: "clv-segmentation",    label: "CLV Segmentation",            icon: PieChart,        cat: "Navigate" },
   { id: "revenue-forecast",    label: "Revenue Forecast",            icon: TrendingUp,      cat: "Navigate" },
   { id: "cohort-analytics",    label: "Cohort Analytics",            icon: BarChart2,       cat: "Navigate" },
@@ -62,7 +61,7 @@ export default function CommandPalette({ onClose, onNavigate, onToggleTheme }: P
             style={{ flex: 1, background: "none", border: "none", outline: "none", fontSize: 14, color: "var(--foreground)", fontFamily: "inherit" }}
           />
           {q && (
-            <button onClick={() => setQ("")} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--muted-foreground)", fontSize: 11, padding: "2px 6px", borderRadius: 5, background: "var(--muted)" }}>
+            <button onClick={() => setQ("")} style={{ border: "none", cursor: "pointer", color: "var(--muted-foreground)", fontSize: 11, padding: "2px 6px", borderRadius: 5, background: "var(--muted)" }}>
               Clear
             </button>
           )}

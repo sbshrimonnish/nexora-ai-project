@@ -24,7 +24,7 @@ const RESPONSES: Record<string, string> = {
   "Which high-CLV customers have high churn risk?":
     "**47 customers** have predicted CLV > ₹5L AND churn risk > 40%. Combined CLV at risk: **₹4.7 Cr**.\n\nTop 5 most urgent:\n1. **BlueWave Retail (C1008)** — CLV ₹21.5L, churn risk **67%** — critical\n2. **Orbit Systems (C1005)** — CLV ₹37.8L, churn risk **48%** — at risk\n3. **NovaSpark Labs (C1003)** — CLV ₹12.4L, churn risk **34%** — warning\n4. *3 additional accounts in 30–38% risk range*\n\nI recommend activating the **Retention Playbook** for BlueWave immediately, and scheduling customer-success calls for Orbit Systems within 7 days.",
   "default":
-    "Based on the current CLV model (v2.3.1, R²=0.924) and your portfolio of 50,000 customers:\n\nI can help you analyze individual customer CLV, compare segments, explain model predictions using SHAP, identify growth opportunities, or generate retention strategies.\n\nTry asking about specific customers, segments, or trends — or use the Customer Directory and Customer 360° screens for deep-dives.",
+    "Based on the current CLV model (v2.3.1, R²=0.924) and your portfolio of 50,000 customers:\n\nI can help you analyze individual customer CLV, compare segments, explain model predictions using SHAP, identify growth opportunities, or generate retention strategies.\n\nTry asking about specific customers, segments, or trends — or use the Customer Directory and Individual Progress screens for deep-dives.",
 };
 
 interface Msg { role: "user" | "ai"; text: string; time: string; }
