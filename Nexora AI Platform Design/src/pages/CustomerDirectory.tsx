@@ -150,20 +150,62 @@ export default function CustomerDirectory({ onSelectCustomer }: { onSelectCustom
         pageItems = [generate50kCustomer(numMatch)];
         calculatedTotal = 1;
       } else {
-        const startIdx = (page - 1) * PER + 1;
-        const endIdx = Math.min(totalCount, page * PER);
-        for (let idx = startIdx; idx <= endIdx; idx++) {
+        const matching: any[] = [];
+        const maxScan = 50000;
+
+        for (let idx = 1; idx <= maxScan; idx++) {
           const item = generate50kCustomer(idx);
-          if (qf && item.segment.toLowerCase() !== qf.toLowerCase() && !(qf === "At Risk" && item.status === "At Risk")) {
-            continue;
+
+          // Quick Filter
+          if (qf) {
+            const qfLow = qf.toLowerCase();
+            const segLow = item.segment.toLowerCase();
+            let isMatch = false;
+
+            if (qf === "At Risk") {
+              isMatch = item.status === "At Risk" || segLow === "declining value";
+            } else if (qfLow === "mid value") {
+              isMatch = segLow === "mid value" || segLow === "stable value" || segLow === "growth opportunity";
+            } else if (qfLow === "low value") {
+              isMatch = segLow === "low value" || segLow === "developing";
+            } else {
+              isMatch = segLow.includes(qfLow);
+            }
+
+            if (!isMatch) continue;
           }
-          pageItems.push(item);
+
+          // Search filter
+          if (sLower) {
+            const nameLow = item.company.toLowerCase();
+            const idLow = item.id.toLowerCase();
+            const indLow = item.industry.toLowerCase();
+            if (!nameLow.includes(sLower) && !idLow.includes(sLower) && !indLow.includes(sLower)) {
+              continue;
+            }
+          }
+
+          matching.push(item);
         }
+
+        // Sorting
+        matching.sort((a, b) => {
+          let valA = a[sortCol] ?? a.clv;
+          let valB = b[sortCol] ?? b.clv;
+          if (typeof valA === "string") {
+            return sortDir === "desc" ? String(valB).localeCompare(String(valA)) : String(valA).localeCompare(String(valB));
+          }
+          return sortDir === "desc" ? valB - valA : valA - valB;
+        });
+
+        calculatedTotal = matching.length;
+        const start = (page - 1) * PER;
+        pageItems = matching.slice(start, start + PER);
       }
 
       setItems(pageItems);
       setTotal(calculatedTotal);
-      setTotalPages(Math.ceil(calculatedTotal / PER));
+      setTotalPages(Math.max(1, Math.ceil(calculatedTotal / PER)));
     } finally {
       setLoading(false);
     }

@@ -87,7 +87,9 @@ def list_customers(
         if ts_lower == "at risk":
             df = df[(df["clv_segment"] == "Declining Value") | (df["churn_probability"] > 0.35)]
         elif ts_lower in ["mid value", "mid-value", "mid"]:
-            df = df[df["clv_segment"].isin(["Stable Value", "Growth Opportunity", "Developing"])]
+            df = df[df["clv_segment"].isin(["Stable Value", "Growth Opportunity", "Developing", "Mid Value"])]
+        elif ts_lower in ["low value", "low-value", "low"]:
+            df = df[df["clv_segment"].isin(["Low Value", "Developing"])]
         else:
             df = df[df["clv_segment"].str.lower().str.contains(ts_lower)]
     if target_trajectory and target_trajectory != "All":
